@@ -61,10 +61,9 @@ def isColumnEmpty(input, board):
 def basicGameWinCondition(board, player):
 #check horizontal
   win = 0
-  for i in range(len(board)):
-    r = board[i]
+  for i, r in enumerate(board):
     for j in range(len(r)):
-      n = board[i][j]
+      n = r[j]
       if n == player:
         win += 1
       else:
@@ -76,15 +75,14 @@ def basicGameWinCondition(board, player):
   turnedBoard = []
   for r in board[0]:
     turnedBoard += [[]]
-  for a in range(len(board)):
-    for b in range(len(board[a])):      
-      turnedBoard[b] += [board[a][b]]
+  for a, _ in enumerate(board):
+    for b, item in enumerate(board[a]):      
+      turnedBoard[b] += [item]
 
   #check
-  for i in range(len(turnedBoard)):
-    r = turnedBoard[i]
+  for i, r in enumerate(turnedBoard):
     for j in range(len(r)):
-      n = turnedBoard[i][j]
+      n = r[j]
       if n == player:
         win += 1
       else:
@@ -93,8 +91,8 @@ def basicGameWinCondition(board, player):
         return player
   
 #Check diagonal (rising to right)
-  for i in range(len(board)): #row
-    for g in range(len(board[i])):
+  for i, item in enumerate(board): #row
+    for g in range(len(item)):
       for j in range(4):
         if not (findplace(i+j, g-j, board) == player):
           break
@@ -102,8 +100,8 @@ def basicGameWinCondition(board, player):
         return player
      
   #Check diagonal (falling to right)
-  for i in range(len(board)): #row
-    for g in range(len(board[i])):
+  for i, item in enumerate(board): #row
+    for g in range(len(item)):
       for j in range(4):
         if not (findplace(i+j, g+j, board) == player):
           break
